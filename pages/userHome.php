@@ -317,7 +317,7 @@ if(isset($_GET['Message']))
 
                     function showPosition(position) {
                         x.innerHTML = "Your Location has been updated";
-                        $.get("/GroupScope/utils/updateUserLocation.php",{lat : position.coords.latitude, lon : position.coords.longitude})
+                        $.get("/groupscope/utils/updateUserLocation.php",{lat : position.coords.latitude, lon : position.coords.longitude})
                     }
                     </script>
                     
