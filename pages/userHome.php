@@ -54,7 +54,9 @@ if(isset($_GET['Message']))
   $message = $_GET['Message'];
   echo "<script type='text/javascript'>alert('$message');</script>";
   $userID = $_SESSION['userID'];
+  unset($_GET['Message']);
 }
+unset($_POST);
 
 
 
@@ -239,7 +241,7 @@ if(isset($_GET['Message']))
    
 
     
-    <div class="container h-1300" style="height:660px;">
+    <div class="container h-1300" style="height:750px;">
       <div class="row h-100">
         <div class="col-md-8 mx-auto">
           <div class="col-md-10 mx-auto">
@@ -316,9 +318,10 @@ if(isset($_GET['Message']))
                     }
 
                     function showPosition(position) {
-                        x.innerHTML = "Your Location has been updated";
-                        $.get("/GroupScope/utils/updateUserLocation.php",{lat : position.coords.latitude, lon : position.coords.longitude})
-                    }
+                      x.innerHTML = "Your Location has been updated <br>Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+                      $.get("../utils/updateUserLocation.php",{lat : position.coords.latitude, lon : position.coords.longitude})
+                  }
                     </script>
                     
                   </div>
@@ -328,7 +331,7 @@ if(isset($_GET['Message']))
                     <div style="height:10px;">
                       <!-- spacer -->
                     </div>  
-                    <a onclick="getLocation()" class="btn btn-outline btn-xl js-scroll-trigger">Send Location</a>
+                    <a onclick="getLocation()" class="btn btn-outline btn-xl js-scroll-trigger">Update your location</a>
                     <!-- <a href="../utils/sendLocation.php" onclick="getLocation()" class="btn btn-outline btn-xl js-scroll-trigger">Send Location</a> -->
                   </div>
                   <div style="height:10px;">
@@ -385,7 +388,7 @@ if(isset($_GET['Message']))
         var latLon = null ? response : {lat: 44.9727845, lng: -93.2923275};
         // var uluru = latLon;
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 1,
           center: latLon
         });
         var marker = new google.maps.Marker({

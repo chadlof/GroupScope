@@ -21,22 +21,31 @@ function addUser($_fName, $_lName, $_uName, $_password, $_phone, $_email ){
         if( mysqli_num_rows($result) == 0)
         {
             
-            $sql = "INSERT INTO user (User_ID, First_Name, Last_Name, User_Phone_Num, Email, Username, Password, Image_Name, Hair_Color, Weight, Ethnicity, Lat, Lon)
-            VALUES (null, '$fName', '$lName',  '$phone', '$email','$uName', '$password', null, null, null, null, null, null)";
+        //     $query = $con->prepare("INSERT INTO user (User_ID, First_Name, Last_Name, User_Phone_Num, Email, Username, `Password`, `Role`, Image_Name, Hair_Color, `Weight`, Ethnicity, Lat, Lon)
+        //    VALUES (null, ?,?,?,?,?,?,null, null, null, null, null, null, null)");
+        //    echo 'fname = '.$fName.'<br>';
+        //    echo 'lname = '.$lName.'<br>';
+        //    echo 'phone = '.$phone.'<br>';
+        //    echo 'email = '.$email.'<br>';
+        //    echo 'uname = '.$uName.'<br>';
+        //    echo 'password = '.$password.'<br>';
+        //    // addUser() with parameter binding
+        //     $query->bind_param('ssssss',$fName, $lName,  $phone, $email,$uName, $password);
+        $query = $con->prepare("INSERT INTO `user` (`User_ID`, `First_Name`, `Last_Name`, `User_Phone_Num`, `Email`, `Username`, `Password`, `Role`, `Image_Name`, `Hair_Color`, `Weight`, `Ethnicity`, `Lat`, `Lon`)
+        VALUES (null,'$fName', '$lName',  '$phone', '$email','$uName', '$password', 'User', null, null, null, null, null, null)");
+       
             
-            if ($con->query($sql) === TRUE) 
+            if ($query->execute()) 
+            // if (mysqli_query($con, $query))
             {
-                $Message = "New user record created successfully \n";
+                $Message = "New user record created successfully <br>";
                 return $Message;
             } else 
             {
-                $Message = "Error: " . $sql . "\n" . $con->error;
+                $Message = "Error: ". $query . "<br>" . $con->error;
                 return $Message;
             }
             
-            // mysqli_close($con);
-            // unset($con);
-            // return $Mesage;
 
         }
         else 
@@ -47,7 +56,7 @@ function addUser($_fName, $_lName, $_uName, $_password, $_phone, $_email ){
     }
     else
     {
-        $Message = "Error: " . $sql . "\n" . $con->error;
+        $Message = "Error: " . $sql . "<br>" . $con->error;
         return $Mesage;
     }
 
@@ -59,15 +68,16 @@ function addUser($_fName, $_lName, $_uName, $_password, $_phone, $_email ){
 
 
 
+
 function deleteUser($_id){
     global $con;
     $id = $_id;
   
     mysqli_query($con,"DELETE FROM groupuser WHERE GroupUser_User_ID = '$id'");
     mysqli_query($con,"DELETE FROM user WHERE User_ID = '$id'");
-    // mysqli_close($con);
+
     unset($con);
-    // header("location:suadminhome.php");
+    header("location:suadminhome.php");
     echo "Your selection has been deleted";
     
 }
@@ -108,13 +118,15 @@ function editUser($_id, $_fName, $_lName, $_uName, $_password, $_role, $_phone, 
         $_SESSION['weight'] = $weight;
         $_SESSION['ethnicity'] = $ethnicity;
         $Message = "Your profile has been updated!";
+        return $Message;
     } else {
         $Message = "Error: " . $sql . "<br>" . $con->error;
+        return $Message;
     }
 
     // mysqli_close($con);
     unset($con);
-    return $Message;
+    
 
 }
 
