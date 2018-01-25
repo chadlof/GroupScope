@@ -105,13 +105,14 @@ $message = $_GET['Message'];
           <form action="adminEditUser.php" method="post" name="tableUsers">
               <table class="table-bordered " width="100%">
                   <tr>
-                      <td align="center">First Name</td>
-                      <td align="center">Last Name</td>
-                      <td align="center">Username</td>
-                      <td align="center">Password</td>
-                      <td align="center">Email</td>
-                      <td align="center">Role</td>
-                      <td align="center" colspan="4">Actions</td>
+                    <td align="center">User ID</td>
+                    <td align="center">First Name</td>
+                    <td align="center">Last Name</td>
+                    <td align="center">Username</td>
+                    <td align="center">Phone</td>
+                    <td align="center">Email</td>
+                    <td align="center">Role</td>
+                    <td align="center" colspan="4">Actions</td>
                   </tr>
 
                   <?php
@@ -155,23 +156,22 @@ $message = $_GET['Message'];
                       ?>
 
                       <tr>
-                      <!-- <input type="hidden" name="id" value="<?php echo $id; ?>"> -->
-                          <td align="center"><?php echo $fName; ?></td>
-                          <td align="center" ><?php echo $lName ;?></td>
-                          <td align="center" ><?php echo $uName; ?></td>
-                          <td align="center"><?php echo $password; ?></td>
-                          <td align="center" ><?php echo $email ;?></td>
-                          <td align="center" ><?php echo $role; ?></td>
-                          <td align="center" colspan="4">
-                              <a href="../pages/adminEditUser.php?id=<?php echo $userID;?>">
-                              <img src="../img/edit.ico"  allt="edit_icon"
-                               height="20px">
-                                &nbsp;&nbsp;
-                              <a href="../utils/adminDeleteUser.php?id=<?php echo $userID;?>">
-                              <img src="../img/x.png" allt="delet_icon"
-                               height="20px"> 
-                          </td>
-                          
+                        <td align="center"><?php echo $userID; ?></td>
+                        <td align="center"><?php echo $fName; ?></td>
+                        <td align="center" ><?php echo $lName ;?></td>
+                        <td align="center" ><?php echo $uName; ?></td>
+                        <td align="center"><?php echo $phone; ?></td>
+                        <td align="center" ><?php echo $email ;?></td>
+                        <td align="center" ><?php echo $role; ?></td>
+                        <td align="center" colspan="4">
+                            <a href="../pages/adminEditUser.php?id=<?php echo $userID;?>">
+                            <img src="../img/edit.ico"  allt="edit_icon"
+                            height="20px">
+                            &nbsp;&nbsp;
+                            <a href="../utils/adminDeleteUser.php?id=<?php echo $userID;?>">
+                            <img src="../img/x.png" allt="delet_icon"
+                            height="20px"> 
+                        </td>
                       </tr>
                       <?php
                   }

@@ -1,9 +1,13 @@
 <?php
+// $host = 'localhost';// need to change
+// $user = 'chadlofg_chadlofg';
+// $pass = 'Q27d.X5r';
+// $db = 'chadlofg_group_scope';
 
 $host = 'localhost';// need to change
-$user = 'chadlofg_chadlofg';
-$pass = 'Q27d.X5r';
-$db = 'chadlofg_group_scope';
+$user = 'root';
+$pass = '';
+$db = 'group_scope';
 
 // $con = new mysqli("localhost","root","","group_scope");
 $con = mysqli_connect($host,$user,$pass,$db);
