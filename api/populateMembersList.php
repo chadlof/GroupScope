@@ -3,7 +3,7 @@ include '../utils/connection.php';
 
 if(isset($_GET['groupName']))
 {
-    $con2;
+  
  $group = $_GET['groupName'];
  
 
