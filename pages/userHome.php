@@ -100,7 +100,7 @@ unset($_POST);
     <!-- <link rel="stylesheet" type="text/css" href="../css/select_style.css"> -->
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript">
-    function populateMembers(val)
+    function populateMembers(val) //called on line 259
     {
     $.ajax({
     type: 'get',
@@ -115,11 +115,10 @@ unset($_POST);
     });
     }
 
-    function getUserLocation(val)
+    function getUserLocation(val) //called on line 284
     {
     $.ajax({
     type: 'get',
-    // url: '../api/userLocation.php?username=' + val,
     url: '../api/userLocation.php',
     dataType: 'json',
     data: {
@@ -129,20 +128,13 @@ unset($_POST);
             console.log(textStatus + ': ' + errorThrown);
         },
     success: function (response) {
-      console.log(response);
-      if (typeof response == 'string')
-      {
-        console.log('response = a string');
-      }
-        
-    
       var map;
       function initMap() {
         // var latLon = !null ? response : {lat: 44.9727845, lng: -93.2923275};
         // var uluru = latLon;
         // var chadAfrica = {lat: 14.5517891, lng: 13.972887};
         var uluru = response;
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map'), { //line 282
 
           zoom: 12,
           center: uluru,
@@ -176,17 +168,7 @@ unset($_POST);
     border-color:#fff;
     text-transform: none;
     }
-    /* .btn-drop-userhome{
-    background-color: rgba(255, 255, 255, 0.534);;  
-    border-color:#fff;'='
-    color:rgb(73, 72, 72);
-    color:black;
-    } */
-    /* .btn-drop-userhome:hover{
-    background-color:black;  
-    border-color:#fff;
-    color:rgb(73, 72, 72);
-    } */
+
 </style>
   </head>
 
